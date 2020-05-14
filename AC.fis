@@ -1,0 +1,135 @@
+[System]
+Name='AC'
+Type='mamdani'
+Version=2.0
+NumInputs=5
+NumOutputs=4
+NumRules=48
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Ut'
+Range=[18 30]
+NumMFs=3
+MF1='low':'trimf',[-1000 22 25]
+MF2='med':'trimf',[22 25 28]
+MF3='high':'trimf',[25 28 10000]
+
+[Input2]
+Name='Td'
+Range=[-1 3]
+NumMFs=4
+MF1='negative':'trimf',[-2.667 -1 0]
+MF2='zero':'trimf',[-0.5 0 0.5]
+MF3='positive':'trimf',[0 1 2]
+MF4='large':'trimf',[1 2 1000]
+
+[Input3]
+Name='TDew'
+Range=[15 30]
+NumMFs=2
+MF1='optimal':'trimf',[-500 23 26]
+MF2='humid':'trimf',[23 27 500]
+
+[Input4]
+Name='Occ'
+Range=[0 10]
+NumMFs=4
+MF1='low':'trimf',[1 3 5]
+MF2='med':'trimf',[4 6 8]
+MF3='high':'trimf',[6.5 8 500]
+MF4='zero':'trimf',[0 0 0]
+
+[Input5]
+Name='TDay'
+Range=[0 25]
+NumMFs=3
+MF1='morning':'trimf',[-500 8 13]
+MF2='afternoon':'trimf',[9 13.5 18]
+MF3='night':'trimf',[16 22.5 500]
+
+[Output1]
+Name='Sc'
+Range=[0 100]
+NumMFs=4
+MF1='low':'trimf',[30 45 60]
+MF2='med':'trimf',[50 65 80]
+MF3='fast':'trimf',[70 90 10000]
+MF4='off':'trimf',[0 0 0]
+
+[Output2]
+Name='Sf'
+Range=[0 100]
+NumMFs=4
+MF1='low':'trimf',[30 45 60]
+MF2='med':'trimf',[50 65 80]
+MF3='high':'trimf',[70 95 10000]
+MF4='off':'trimf',[0 0 0]
+
+[Output3]
+Name='Mo'
+Range=[0 1]
+NumMFs=2
+MF1='dehumid':'trimf',[0 0 1]
+MF2='AC':'trimf',[0 1 1]
+
+[Output4]
+Name='Fn'
+Range=[0 90]
+NumMFs=2
+MF1='towards':'trimf',[-10000 20 70]
+MF2='away':'trimf',[23 70 10000]
+
+[Rules]
+1 1 1 1 2, 4 2 2 2 (1) : 1
+1 2 1 1 2, 4 3 2 2 (1) : 1
+1 3 1 1 2, 1 2 2 1 (1) : 1
+1 4 1 1 2, 1 3 2 1 (1) : 1
+2 1 1 1 2, 4 2 2 2 (1) : 1
+2 2 1 1 2, 4 2 2 1 (1) : 1
+2 3 1 1 2, 2 1 2 1 (1) : 1
+2 4 1 1 2, 2 2 2 1 (1) : 1
+3 1 1 1 2, 4 3 2 2 (1) : 1
+3 2 1 1 2, 1 1 2 1 (1) : 1
+3 3 1 1 2, 2 2 2 1 (1) : 1
+3 4 1 1 2, 2 3 2 1 (1) : 1
+1 1 1 3 3, 4 1 2 1 (1) : 1
+1 2 1 3 3, 4 2 2 2 (1) : 1
+1 3 1 3 3, 2 2 2 1 (1) : 1
+1 4 1 3 3, 2 3 2 1 (1) : 1
+2 1 1 3 3, 4 2 2 1 (1) : 1
+2 2 1 3 3, 4 3 2 2 (1) : 1
+2 3 1 3 3, 2 3 2 1 (1) : 1
+2 4 1 3 3, 3 2 2 1 (1) : 1
+3 1 1 3 3, 4 3 2 1 (1) : 1
+3 2 1 3 3, 4 3 2 1 (1) : 1
+3 3 1 3 3, 3 2 2 1 (1) : 1
+3 4 1 3 3, 3 3 2 1 (1) : 1
+1 1 2 3 2, 3 2 1 1 (1) : 1
+1 2 2 3 2, 3 3 1 1 (1) : 1
+1 3 2 3 2, 3 3 2 1 (1) : 1
+1 4 2 3 2, 3 3 2 1 (1) : 1
+2 1 2 3 2, 2 3 1 1 (1) : 1
+2 2 2 3 2, 2 3 1 1 (1) : 1
+2 3 2 3 2, 3 3 2 1 (1) : 1
+2 4 2 3 2, 3 3 2 1 (1) : 1
+3 1 2 3 2, 2 2 1 1 (1) : 1
+3 2 2 3 2, 2 2 1 1 (1) : 1
+3 3 2 3 2, 3 3 2 1 (1) : 1
+3 4 2 3 2, 3 3 2 1 (1) : 1
+1 1 2 2 1, 2 3 1 1 (1) : 1
+1 2 2 2 1, 3 2 1 1 (1) : 1
+1 3 2 2 1, 2 3 2 1 (1) : 1
+1 4 2 2 1, 3 2 2 1 (1) : 1
+2 1 2 2 1, 2 2 1 1 (1) : 1
+2 2 2 2 1, 2 2 1 1 (1) : 1
+2 3 2 2 1, 3 2 2 1 (1) : 1
+2 4 2 2 1, 3 3 2 1 (1) : 1
+3 1 2 2 1, 1 3 1 1 (1) : 1
+3 2 2 2 1, 2 3 1 1 (1) : 1
+3 3 2 2 1, 3 3 2 1 (1) : 1
+3 4 2 2 1, 3 3 2 1 (1) : 1
